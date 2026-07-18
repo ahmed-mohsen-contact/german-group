@@ -126,7 +126,7 @@ export default function GermanEgyptSite() {
 
   const navLinks = [
     { href: "#home", label: "الرئيسية" },
-    { href: "#services", label: "منتجاتنا" },
+    { href: "#services", label: "منتجاتنا"  },
     { href: "#why", label: "ليه إحنا" },
     { href: "#gallery", label: "أعمالنا" },
     { href: "#contact", label: "اتصل بنا" },
