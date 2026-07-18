@@ -15,6 +15,7 @@ import {
   DoorOpen,
   PanelsTopLeft,
   Sparkles,
+  ChevronUp,
 } from "lucide-react";
 
 const PROJECT_IMG_1 = "./assets/img1.png"
@@ -22,7 +23,7 @@ const PROJECT_IMG_2 = "./assets/img2.png"
 const PROJECT_IMG_3 = "./assets/img3.png"
 const PROJECT_IMG_4 = "./assets/img4.png"
 
-const LOGO_SRC = "./assets/logo.png";
+const LOGO_SRC = "./assets/logo.jng";
 const PHONE_DISPLAY = "01279734467";
 const PHONE_TEL = "+201279734467";
 const WHATSAPP_LINK = "https://wa.me/201279734467";
@@ -114,6 +115,136 @@ function FrameCard({ icon: Icon, title, desc }) {
   );
 }
 
+/* ============================================================
+   FLOATING WHATSAPP BUTTON - ثابت ومتحرك
+============================================================ */
+function FloatingWhatsApp() {
+  const [isVisible, setIsVisible] = useState(true);
+  const [isPulsing, setIsPulsing] = useState(false);
+
+  useEffect(() => {
+    // إظهار/إخفاء الزر عند التمرير
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsVisible(scrollY > 300);
+    };
+
+    // تأثير النبض المستمر
+    const pulseInterval = setInterval(() => {
+      setIsPulsing(prev => !prev);
+    }, 2000);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearInterval(pulseInterval);
+    };
+  }, []);
+
+  return (
+    <>
+      {/* زر الواتساب الثابت */}
+      <div 
+        className={`fixed bottom-8 left-6 z-50 transition-all duration-500 ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0'
+        }`}
+      >
+        {/* حلقة النبض الخارجية */}
+        <div className="absolute inset-0 rounded-full animate-ping-slow">
+          <div 
+            className={`absolute inset-0 rounded-full transition-all duration-1000 ${
+              isPulsing ? 'bg-green-400/60 scale-150' : 'bg-green-400/30 scale-100'
+            }`}
+            style={{ animationDuration: '2s' }}
+          />
+        </div>
+
+        {/* حلقة النبض الثانية */}
+        <div className="absolute inset-0 rounded-full">
+          <div 
+            className={`absolute inset-0 rounded-full transition-all duration-1000 delay-300 ${
+              isPulsing ? 'bg-green-400/40 scale-125' : 'bg-green-400/20 scale-100'
+            }`}
+          />
+        </div>
+
+        {/* الزر الرئيسي */}
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noreferrer"
+          className="relative flex items-center gap-3 bg-[#25D366] text-white px-5 py-3 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 group"
+          style={{
+            boxShadow: '0 10px 40px rgba(37, 211, 102, 0.4)',
+          }}
+        >
+          {/* أيقونة الواتساب المتحركة */}
+          <div className="relative">
+            <MessageCircle 
+              size={28} 
+              className={`transition-transform duration-300 group-hover:rotate-12 ${
+                isPulsing ? 'animate-bounce' : ''
+              }`}
+            />
+            {/* نقطة الإشعار */}
+            <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse border-2 border-white" />
+          </div>
+
+          <div className="flex flex-col items-start">
+            <span className="text-xs font-light opacity-90">تواصل معنا</span>
+            <span className="text-sm font-bold" style={{ fontFamily: "Cairo, sans-serif" }}>
+              واتساب مباشر
+            </span>
+          </div>
+
+          {/* سهم صغير */}
+          <ChevronUp 
+            size={16} 
+            className={`transition-transform duration-300 group-hover:-translate-y-1 ${
+              isPulsing ? 'animate-bounce' : ''
+            }`}
+          />
+        </a>
+
+        {/* نص عائم صغير */}
+        <div 
+          className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-[#0A2E3F] text-white px-4 py-1.5 rounded-full text-xs whitespace-nowrap transition-all duration-500 ${
+            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+          }`}
+          style={{ fontFamily: "Cairo, sans-serif" }}
+        >
+          💬 احجز استشارتك المجانية
+        </div>
+      </div>
+
+      {/* إضافة أنماط مخصصة */}
+      <style>{`
+        @keyframes ping-slow {
+          0% { transform: scale(1); opacity: 1; }
+          100% { transform: scale(1.8); opacity: 0; }
+        }
+        .animate-ping-slow {
+          animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float-whatsapp {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50% { transform: translateY(-8px) scale(1.02); }
+        }
+        .float-whatsapp {
+          animation: float-whatsapp 2.5s ease-in-out infinite;
+        }
+      `}</style>
+    </>
+  );
+}
+
 export default function GermanEgyptSite() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -195,6 +326,9 @@ export default function GermanEgyptSite() {
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&display=swap');
         html { scroll-behavior: smooth; }
       `}</style>
+
+      {/* ================= زر الواتساب العائم ================= */}
+      <FloatingWhatsApp />
 
       {/* ================= NAVBAR ================= */}
       <header
@@ -357,8 +491,7 @@ export default function GermanEgyptSite() {
             </div>
           </div>
 
-          {/* Hero visual: stylized window frame with mullions + slats,
-              echoing the physical product itself */}
+          {/* Hero visual: stylized window frame with mullions + slats */}
           <div className="relative flex items-center justify-center">
             <div className="relative w-full max-w-sm aspect-square rounded-sm bg-white border-[6px] border-[#0A2E3F] shadow-[0_30px_60px_rgba(10,46,63,0.18)]">
               <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
@@ -449,7 +582,6 @@ export default function GermanEgyptSite() {
 
       {/* ================= GALLERY ================= */}
       <section id="gallery" className="relative py-20 md:py-28 overflow-hidden">
-        {/* creative gradient backdrop, echoes the logo's glass-blue palette */}
         <div
           className="absolute inset-0 -z-10"
           style={{ background: "linear-gradient(180deg,#FFFFFF 0%,#F2F9FC 45%,#E9F5FA 100%)" }}
