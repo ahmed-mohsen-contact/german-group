@@ -469,7 +469,7 @@ export default function GermanEgyptSite() {
               شتر وأبواب ونوافذ UPVC
               <br />
               تحمي بيتك بلمسة{" "}
-              <span className="bg-gradient-to-l from-[#083F5C] to-[#0B6FA0] bg-clip-text text-transparent">
+              <span className="bg-linear-to-l from-[#083F5C] to-[#0B6FA0] bg-clip-text text-transparent">
                 ألمانية
               </span>
             </h1>
