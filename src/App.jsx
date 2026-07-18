@@ -18,15 +18,25 @@ import {
   ChevronUp,
 } from "lucide-react";
 
-const PROJECT_IMG_1 = "./assets/img1.png"
-const PROJECT_IMG_2 = "./assets/img2.png"
-const PROJECT_IMG_3 = "./assets/img3.png"
-const PROJECT_IMG_4 = "./assets/img4.png"
+// استيراد الصور من مجلد assets
+import img1 from "./assets/img1.jpg";
+import img2 from "./assets/img2.jpg";
+import img3 from "./assets/img3.jpg";
+import img4 from "./assets/img4.jpg";
+import logo from "./assets/logo.jpg";
 
-const LOGO_SRC = "./assets/logo.jng";
+// تعريف المتغيرات بالصور المستوردة
+const PROJECT_IMG_1 = img1;
+const PROJECT_IMG_2 = img2;
+const PROJECT_IMG_3 = img3;
+const PROJECT_IMG_4 = img4;
+const LOGO_SRC = logo;
+
 const PHONE_DISPLAY = "01279734467";
 const PHONE_TEL = "+201279734467";
 const WHATSAPP_LINK = "https://wa.me/201279734467";
+
+// ... باقي الكود
 
 /* -------------------------------------------------------------
    Signature element: "Slats" — echoes the louvre/blind blades in
@@ -86,8 +96,7 @@ function FrameCard({ icon: Icon, title, desc }) {
       <div
         className="absolute -inset-px rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
-          background:
-            "linear-gradient(135deg,#17A6D6,#0B6FA0)",
+          background: "linear-gradient(135deg,#17A6D6,#0B6FA0)",
         }}
       />
       <div className="relative bg-white border border-[#D7E2E8] rounded-sm p-7 h-full flex flex-col gap-4 transition-transform duration-300 group-hover:-translate-y-1">
@@ -106,7 +115,10 @@ function FrameCard({ icon: Icon, title, desc }) {
         >
           {title}
         </h3>
-        <p className="text-[#4B6572] leading-8 text-[15px]" style={{ fontFamily: "Tajawal, sans-serif" }}>
+        <p
+          className="text-[#4B6572] leading-8 text-[15px]"
+          style={{ fontFamily: "Tajawal, sans-serif" }}
+        >
           {desc}
         </p>
         <Slats className="w-16 mt-auto pt-2" tone="metal" />
@@ -131,12 +143,12 @@ function FloatingWhatsApp() {
 
     // تأثير النبض المستمر
     const pulseInterval = setInterval(() => {
-      setIsPulsing(prev => !prev);
+      setIsPulsing((prev) => !prev);
     }, 2000);
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
       clearInterval(pulseInterval);
     };
   }, []);
@@ -144,26 +156,30 @@ function FloatingWhatsApp() {
   return (
     <>
       {/* زر الواتساب الثابت */}
-      <div 
+      <div
         className={`fixed bottom-8 left-6 z-50 transition-all duration-500 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-24 opacity-0'
+          isVisible ? "translate-y-0 opacity-100" : "translate-y-24 opacity-0"
         }`}
       >
         {/* حلقة النبض الخارجية */}
         <div className="absolute inset-0 rounded-full animate-ping-slow">
-          <div 
+          <div
             className={`absolute inset-0 rounded-full transition-all duration-1000 ${
-              isPulsing ? 'bg-green-400/60 scale-150' : 'bg-green-400/30 scale-100'
+              isPulsing
+                ? "bg-green-400/60 scale-150"
+                : "bg-green-400/30 scale-100"
             }`}
-            style={{ animationDuration: '2s' }}
+            style={{ animationDuration: "2s" }}
           />
         </div>
 
         {/* حلقة النبض الثانية */}
         <div className="absolute inset-0 rounded-full">
-          <div 
+          <div
             className={`absolute inset-0 rounded-full transition-all duration-1000 delay-300 ${
-              isPulsing ? 'bg-green-400/40 scale-125' : 'bg-green-400/20 scale-100'
+              isPulsing
+                ? "bg-green-400/40 scale-125"
+                : "bg-green-400/20 scale-100"
             }`}
           />
         </div>
@@ -175,15 +191,15 @@ function FloatingWhatsApp() {
           rel="noreferrer"
           className="relative flex items-center gap-3 bg-[#25D366] text-white px-5 py-3 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 group"
           style={{
-            boxShadow: '0 10px 40px rgba(37, 211, 102, 0.4)',
+            boxShadow: "0 10px 40px rgba(37, 211, 102, 0.4)",
           }}
         >
           {/* أيقونة الواتساب المتحركة */}
           <div className="relative">
-            <MessageCircle 
-              size={28} 
+            <MessageCircle
+              size={28}
               className={`transition-transform duration-300 group-hover:rotate-12 ${
-                isPulsing ? 'animate-bounce' : ''
+                isPulsing ? "animate-bounce" : ""
               }`}
             />
             {/* نقطة الإشعار */}
@@ -192,24 +208,27 @@ function FloatingWhatsApp() {
 
           <div className="flex flex-col items-start">
             <span className="text-xs font-light opacity-90">تواصل معنا</span>
-            <span className="text-sm font-bold" style={{ fontFamily: "Cairo, sans-serif" }}>
+            <span
+              className="text-sm font-bold"
+              style={{ fontFamily: "Cairo, sans-serif" }}
+            >
               واتساب مباشر
             </span>
           </div>
 
           {/* سهم صغير */}
-          <ChevronUp 
-            size={16} 
+          <ChevronUp
+            size={16}
             className={`transition-transform duration-300 group-hover:-translate-y-1 ${
-              isPulsing ? 'animate-bounce' : ''
+              isPulsing ? "animate-bounce" : ""
             }`}
           />
         </a>
 
         {/* نص عائم صغير */}
-        <div 
+        <div
           className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-[#0A2E3F] text-white px-4 py-1.5 rounded-full text-xs whitespace-nowrap transition-all duration-500 ${
-            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"
           }`}
           style={{ fontFamily: "Cairo, sans-serif" }}
         >
@@ -257,7 +276,7 @@ export default function GermanEgyptSite() {
 
   const navLinks = [
     { href: "#home", label: "الرئيسية" },
-    { href: "#services", label: "منتجاتنا"  },
+    { href: "#services", label: "منتجاتنا" },
     { href: "#why", label: "ليه إحنا" },
     { href: "#gallery", label: "أعمالنا" },
     { href: "#contact", label: "اتصل بنا" },
@@ -287,10 +306,26 @@ export default function GermanEgyptSite() {
   ];
 
   const whyUs = [
-    { icon: ShieldCheck, title: "ضمان حقيقي", desc: "ضمان يصل حتى 10 سنوات على الخامة والتركيب." },
-    { icon: Award, title: "خبرة ألمانية", desc: "خامات ومعايير تصنيع ألمانية معتمدة." },
-    { icon: Wrench, title: "فريق تركيب محترف", desc: "فنيين متخصصين وتنفيذ في الميعاد المتفق عليه." },
-    { icon: Sparkles, title: "خدمة ما بعد البيع", desc: "متابعة ودعم فني بعد التسليم بدون تكلفة إضافية." },
+    {
+      icon: ShieldCheck,
+      title: "ضمان حقيقي",
+      desc: "ضمان يصل حتى 10 سنوات على الخامة والتركيب.",
+    },
+    {
+      icon: Award,
+      title: "خبرة ألمانية",
+      desc: "خامات ومعايير تصنيع ألمانية معتمدة.",
+    },
+    {
+      icon: Wrench,
+      title: "فريق تركيب محترف",
+      desc: "فنيين متخصصين وتنفيذ في الميعاد المتفق عليه.",
+    },
+    {
+      icon: Sparkles,
+      title: "خدمة ما بعد البيع",
+      desc: "متابعة ودعم فني بعد التسليم بدون تكلفة إضافية.",
+    },
   ];
 
   const gallery = [
@@ -321,7 +356,11 @@ export default function GermanEgyptSite() {
   ];
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#F4F8FA]" style={{ fontFamily: "Tajawal, sans-serif" }}>
+    <div
+      dir="rtl"
+      className="min-h-screen bg-[#F4F8FA]"
+      style={{ fontFamily: "Tajawal, sans-serif" }}
+    >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&display=swap');
         html { scroll-behavior: smooth; }
@@ -333,7 +372,9 @@ export default function GermanEgyptSite() {
       {/* ================= NAVBAR ================= */}
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          scrolled ? "bg-white/95 backdrop-blur shadow-[0_2px_20px_rgba(10,46,63,0.08)]" : "bg-transparent"
+          scrolled
+            ? "bg-white/95 backdrop-blur shadow-[0_2px_20px_rgba(10,46,63,0.08)]"
+            : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-20">
@@ -368,7 +409,10 @@ export default function GermanEgyptSite() {
             <a
               href={`tel:${PHONE_TEL}`}
               className="flex items-center gap-2 px-4 py-2.5 rounded-sm text-white text-sm font-bold transition-transform hover:-translate-y-0.5"
-              style={{ background: "linear-gradient(120deg,#0B6FA0,#17A6D6)", fontFamily: "Cairo, sans-serif" }}
+              style={{
+                background: "linear-gradient(120deg,#0B6FA0,#17A6D6)",
+                fontFamily: "Cairo, sans-serif",
+              }}
             >
               <Phone size={18} />
               {PHONE_DISPLAY}
@@ -420,24 +464,37 @@ export default function GermanEgyptSite() {
       </header>
 
       {/* ================= HERO ================= */}
-      <section id="home" className="relative pt-32 pb-20 md:pt-44 md:pb-28 overflow-hidden">
+      <section
+        id="home"
+        className="relative pt-32 pb-20 md:pt-44 md:pb-28 overflow-hidden"
+      >
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: "linear-gradient(180deg,#EAF6FB 0%,#F4F8FA 60%,#F4F8FA 100%)" }}
+          style={{
+            background:
+              "linear-gradient(180deg,#EAF6FB 0%,#F4F8FA 60%,#F4F8FA 100%)",
+          }}
         />
         <div
           className="absolute -top-20 -right-24 w-96 h-96 rounded-full -z-10 opacity-35 blur-3xl"
-          style={{ background: "radial-gradient(circle,#7FE3FF 0%,transparent 70%)" }}
+          style={{
+            background: "radial-gradient(circle,#7FE3FF 0%,transparent 70%)",
+          }}
         />
         <div
           className="absolute bottom-0 -left-24 w-80 h-80 rounded-full -z-10 opacity-25 blur-3xl"
-          style={{ background: "radial-gradient(circle,#0B6FA0 0%,transparent 70%)" }}
+          style={{
+            background: "radial-gradient(circle,#0B6FA0 0%,transparent 70%)",
+          }}
         />
         <div className="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-14 items-center">
           <div className="text-center md:text-right">
             <div className="inline-flex items-center gap-2 mb-5 px-3 py-1.5 rounded-sm bg-white border border-[#D7E2E8]">
               <span className="w-2 h-2 rounded-full bg-[#17A6D6]" />
-              <span className="text-xs font-bold text-[#0B6FA0]" style={{ fontFamily: "Cairo, sans-serif" }}>
+              <span
+                className="text-xs font-bold text-[#0B6FA0]"
+                style={{ fontFamily: "Cairo, sans-serif" }}
+              >
                 خامة ألمانية · تصنيع وتركيب في مصر
               </span>
             </div>
@@ -447,12 +504,12 @@ export default function GermanEgyptSite() {
             >
               شتر وأبواب ونوافذ UPVC
               <br />
-              تحمي بيتك بلمسة{" "}
-              <span style={{ color: "#0B6FA0" }}>ألمانية</span>
+              تحمي بيتك بلمسة <span style={{ color: "#0B6FA0" }}>ألمانية</span>
             </h1>
             <p className="text-[#4B6572] text-lg leading-9 mb-8 max-w-xl mx-auto md:mx-0">
-              جيرمان إيجيبت لتصنيع وتوريد وتركيب الشتر الألوماتيك ونوافذ وأبواب الـUPVC والألومنيوم،
-              بخامات مطابقة للمواصفات الألمانية وضمان حقيقي بعد التركيب.
+              جيرمان إيجيبت لتصنيع وتوريد وتركيب الشتر الألوماتيك ونوافذ وأبواب
+              الـUPVC والألومنيوم، بخامات مطابقة للمواصفات الألمانية وضمان حقيقي
+              بعد التركيب.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a
@@ -460,7 +517,10 @@ export default function GermanEgyptSite() {
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-sm text-white font-bold transition-transform hover:-translate-y-0.5"
-                style={{ background: "#25D366", fontFamily: "Cairo, sans-serif" }}
+                style={{
+                  background: "#25D366",
+                  fontFamily: "Cairo, sans-serif",
+                }}
               >
                 <MessageCircle size={20} />
                 اطلب عرض سعر واتساب
@@ -482,10 +542,15 @@ export default function GermanEgyptSite() {
                 ["10", "سنوات ضمان"],
               ].map(([num, label]) => (
                 <div key={label} className="text-center md:text-right">
-                  <div className="text-3xl font-black text-[#0A2E3F]" style={{ fontFamily: "Cairo, sans-serif" }}>
+                  <div
+                    className="text-3xl font-black text-[#0A2E3F]"
+                    style={{ fontFamily: "Cairo, sans-serif" }}
+                  >
                     {num}
                   </div>
-                  <div className="text-xs text-[#6E8894] font-bold mt-1">{label}</div>
+                  <div className="text-xs text-[#6E8894] font-bold mt-1">
+                    {label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -509,7 +574,10 @@ export default function GermanEgyptSite() {
               <div className="absolute -bottom-6 -left-8 bg-white p-3 rounded-sm shadow-[0_15px_35px_rgba(10,46,63,0.15)] border border-[#E3ECEF]">
                 <Slats className="w-24" tone="brand" />
               </div>
-              <div className="absolute -top-5 -right-5 bg-[#0A2E3F] text-white px-4 py-2 rounded-sm text-xs font-bold flex items-center gap-2" style={{ fontFamily: "Cairo, sans-serif" }}>
+              <div
+                className="absolute -top-5 -right-5 bg-[#0A2E3F] text-white px-4 py-2 rounded-sm text-xs font-bold flex items-center gap-2"
+                style={{ fontFamily: "Cairo, sans-serif" }}
+              >
                 <ShieldCheck size={16} />
                 ضمان 10 سنوات
               </div>
@@ -523,7 +591,10 @@ export default function GermanEgyptSite() {
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <div className="text-center md:text-right mb-14 max-w-2xl mx-auto md:mx-0">
             <SectionEyebrow>منتجاتنا</SectionEyebrow>
-            <h2 className="text-3xl md:text-4xl font-black text-[#0A2E3F]" style={{ fontFamily: "Cairo, sans-serif" }}>
+            <h2
+              className="text-3xl md:text-4xl font-black text-[#0A2E3F]"
+              style={{ fontFamily: "Cairo, sans-serif" }}
+            >
               حلول متكاملة للنوافذ والأبواب والشتر
             </h2>
           </div>
@@ -537,39 +608,56 @@ export default function GermanEgyptSite() {
 
       {/* ================= WHY US ================= */}
       <section id="why" className="py-20 md:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg,#F4F8FA,#EAF6FB)" }} />
+        <div
+          className="absolute inset-0 -z-10"
+          style={{ background: "linear-gradient(180deg,#F4F8FA,#EAF6FB)" }}
+        />
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <div className="grid md:grid-cols-2 gap-14 items-center">
             <div>
               <SectionEyebrow>ليه تختار جيرمان إيجيبت</SectionEyebrow>
-              <h2 className="text-3xl md:text-4xl font-black text-[#0A2E3F] mb-6" style={{ fontFamily: "Cairo, sans-serif" }}>
+              <h2
+                className="text-3xl md:text-4xl font-black text-[#0A2E3F] mb-6"
+                style={{ fontFamily: "Cairo, sans-serif" }}
+              >
                 جودة ألمانية، تنفيذ مصري، ضمان حقيقي
               </h2>
               <p className="text-[#4B6572] leading-8 mb-8">
-                من أول المعاينة والتصميم، لحد التصنيع والتركيب والمتابعة بعد التسليم، بنتعامل مع كل مشروع
-                بمعايير جودة صارمة عشان نضمن لك عزل ممتاز وعمر افتراضي طويل.
+                من أول المعاينة والتصميم، لحد التصنيع والتركيب والمتابعة بعد
+                التسليم، بنتعامل مع كل مشروع بمعايير جودة صارمة عشان نضمن لك عزل
+                ممتاز وعمر افتراضي طويل.
               </p>
               <div className="space-y-4">
-                {["معاينة ومقاس مجاني في موقعك", "أسعار تنافسية بدون وسطاء", "تسليم في الميعاد المتفق عليه"].map(
-                  (item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <CheckCircle2 size={20} color="#0B6FA0" />
-                      <span className="text-[#0A2E3F] font-medium">{item}</span>
-                    </div>
-                  )
-                )}
+                {[
+                  "معاينة ومقاس مجاني في موقعك",
+                  "أسعار تنافسية بدون وسطاء",
+                  "تسليم في الميعاد المتفق عليه",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle2 size={20} color="#0B6FA0" />
+                    <span className="text-[#0A2E3F] font-medium">{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="grid grid-cols-2 gap-5">
               {whyUs.map((w) => (
-                <div key={w.title} className="bg-white border border-[#D7E2E8] rounded-sm p-6 text-center">
+                <div
+                  key={w.title}
+                  className="bg-white border border-[#D7E2E8] rounded-sm p-6 text-center"
+                >
                   <div
                     className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-sm"
-                    style={{ background: "linear-gradient(135deg,#0B6FA0,#17A6D6)" }}
+                    style={{
+                      background: "linear-gradient(135deg,#0B6FA0,#17A6D6)",
+                    }}
                   >
                     <w.icon size={22} color="#fff" strokeWidth={1.8} />
                   </div>
-                  <h4 className="font-bold text-[#0A2E3F] mb-2" style={{ fontFamily: "Cairo, sans-serif" }}>
+                  <h4
+                    className="font-bold text-[#0A2E3F] mb-2"
+                    style={{ fontFamily: "Cairo, sans-serif" }}
+                  >
                     {w.title}
                   </h4>
                   <p className="text-[#6E8894] text-sm leading-6">{w.desc}</p>
@@ -584,32 +672,44 @@ export default function GermanEgyptSite() {
       <section id="gallery" className="relative py-20 md:py-28 overflow-hidden">
         <div
           className="absolute inset-0 -z-10"
-          style={{ background: "linear-gradient(180deg,#FFFFFF 0%,#F2F9FC 45%,#E9F5FA 100%)" }}
+          style={{
+            background:
+              "linear-gradient(180deg,#FFFFFF 0%,#F2F9FC 45%,#E9F5FA 100%)",
+          }}
         />
         <div
           className="absolute -top-24 -left-24 w-80 h-80 rounded-full -z-10 opacity-40 blur-3xl"
-          style={{ background: "radial-gradient(circle,#7FE3FF 0%,transparent 70%)" }}
+          style={{
+            background: "radial-gradient(circle,#7FE3FF 0%,transparent 70%)",
+          }}
         />
         <div
           className="absolute -bottom-32 -right-16 w-96 h-96 rounded-full -z-10 opacity-30 blur-3xl"
-          style={{ background: "radial-gradient(circle,#0B6FA0 0%,transparent 70%)" }}
+          style={{
+            background: "radial-gradient(circle,#0B6FA0 0%,transparent 70%)",
+          }}
         />
 
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <div className="text-center md:text-right mb-14 max-w-2xl mx-auto md:mx-0">
             <SectionEyebrow>معرض أعمالنا</SectionEyebrow>
-            <h2 className="text-3xl md:text-4xl font-black text-[#0A2E3F]" style={{ fontFamily: "Cairo, sans-serif" }}>
+            <h2
+              className="text-3xl md:text-4xl font-black text-[#0A2E3F]"
+              style={{ fontFamily: "Cairo, sans-serif" }}
+            >
               مشاريع حقيقية نفذناها لعملائنا
             </h2>
             <p className="text-[#4B6572] leading-8 mt-4 max-w-lg mx-auto md:mx-0">
-              كل صورة من موقع تنفيذ فعلي، تقدر تتواصل معانا مباشرة على الواتساب لو عجبك تصميم معيّن
-              وعايز نفس الفكرة في بيتك.
+              كل صورة من موقع تنفيذ فعلي، تقدر تتواصل معانا مباشرة على الواتساب
+              لو عجبك تصميم معيّن وعايز نفس الفكرة في بيتك.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-7">
             {gallery.map((g, i) => {
-              const waMsg = encodeURIComponent(`مرحبًا جيرمان إيجيبت، شفت "${g.title}" في معرض الأعمال وحابب أستفسر عنه.`);
+              const waMsg = encodeURIComponent(
+                `مرحبًا جيرمان إيجيبت، شفت "${g.title}" في معرض الأعمال وحابب أستفسر عنه.`,
+              );
               const gradients = [
                 "linear-gradient(135deg,#0B6FA0,#17A6D6)",
                 "linear-gradient(135deg,#0A2E3F,#0B6FA0)",
@@ -629,11 +729,17 @@ export default function GermanEgyptSite() {
                     />
                     <div
                       className="absolute inset-x-0 bottom-0 h-16 opacity-90"
-                      style={{ background: "linear-gradient(0deg, rgba(10,46,63,0.55) 0%, transparent 100%)" }}
+                      style={{
+                        background:
+                          "linear-gradient(0deg, rgba(10,46,63,0.55) 0%, transparent 100%)",
+                      }}
                     />
                     <span
                       className="absolute top-3 right-3 text-[11px] font-bold text-white px-3 py-1 rounded-sm"
-                      style={{ background: gradients[i % gradients.length], fontFamily: "Cairo, sans-serif" }}
+                      style={{
+                        background: gradients[i % gradients.length],
+                        fontFamily: "Cairo, sans-serif",
+                      }}
                     >
                       {g.tag}
                     </span>
@@ -646,13 +752,18 @@ export default function GermanEgyptSite() {
                     >
                       {g.title}
                     </h3>
-                    <p className="text-[#6E8894] text-[13px] leading-6 flex-1">{g.desc}</p>
+                    <p className="text-[#6E8894] text-[13px] leading-6 flex-1">
+                      {g.desc}
+                    </p>
                     <a
                       href={`${WHATSAPP_LINK}?text=${waMsg}`}
                       target="_blank"
                       rel="noreferrer"
                       className="flex items-center justify-center gap-2 mt-1 py-2.5 rounded-sm text-white text-sm font-bold transition-opacity hover:opacity-90"
-                      style={{ background: "#25D366", fontFamily: "Cairo, sans-serif" }}
+                      style={{
+                        background: "#25D366",
+                        fontFamily: "Cairo, sans-serif",
+                      }}
                     >
                       <MessageCircle size={16} />
                       تواصل بخصوص التصميم ده
@@ -666,21 +777,31 @@ export default function GermanEgyptSite() {
       </section>
 
       {/* ================= CONTACT / CTA ================= */}
-      <section id="contact" className="py-20 md:py-28 relative overflow-hidden" style={{ background: "#0A2E3F" }}>
+      <section
+        id="contact"
+        className="py-20 md:py-28 relative overflow-hidden"
+        style={{ background: "#0A2E3F" }}
+      >
         <div className="max-w-7xl mx-auto px-5 md:px-8 grid md:grid-cols-2 gap-14 items-center">
           <div className="text-center md:text-right">
             <div className="flex items-center gap-3 mb-3 justify-center md:justify-start">
               <Slats className="w-10" tone="brand" />
-              <span className="text-sm tracking-wide font-bold uppercase text-[#7FE3FF]" style={{ fontFamily: "Cairo, sans-serif" }}>
+              <span
+                className="text-sm tracking-wide font-bold uppercase text-[#7FE3FF]"
+                style={{ fontFamily: "Cairo, sans-serif" }}
+              >
                 جاهزين نبدأ مشروعك
               </span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-6" style={{ fontFamily: "Cairo, sans-serif" }}>
+            <h2
+              className="text-3xl md:text-4xl font-black text-white mb-6"
+              style={{ fontFamily: "Cairo, sans-serif" }}
+            >
               احصل على معاينة ومقاس مجاني النهاردة
             </h2>
             <p className="text-[#AFC6D0] leading-8 mb-8 max-w-lg mx-auto md:mx-0">
-              كلمنا على الواتساب أو اتصل بينا مباشرة، وهنبعتلك مهندس لمعاينة موقعك وتقديم عرض سعر
-              مناسب بدون أي التزام.
+              كلمنا على الواتساب أو اتصل بينا مباشرة، وهنبعتلك مهندس لمعاينة
+              موقعك وتقديم عرض سعر مناسب بدون أي التزام.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a
@@ -688,7 +809,10 @@ export default function GermanEgyptSite() {
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-sm text-white font-bold transition-transform hover:-translate-y-0.5"
-                style={{ background: "#25D366", fontFamily: "Cairo, sans-serif" }}
+                style={{
+                  background: "#25D366",
+                  fontFamily: "Cairo, sans-serif",
+                }}
               >
                 <MessageCircle size={20} />
                 راسلنا على واتساب
@@ -711,10 +835,16 @@ export default function GermanEgyptSite() {
                   <Phone size={20} color="#7FE3FF" />
                 </div>
                 <div>
-                  <div className="text-white font-bold" style={{ fontFamily: "Cairo, sans-serif" }}>
+                  <div
+                    className="text-white font-bold"
+                    style={{ fontFamily: "Cairo, sans-serif" }}
+                  >
                     اتصل بنا
                   </div>
-                  <div dir="ltr" className="text-[#AFC6D0] text-sm mt-1 text-right">
+                  <div
+                    dir="ltr"
+                    className="text-[#AFC6D0] text-sm mt-1 text-right"
+                  >
                     {PHONE_DISPLAY}
                   </div>
                 </div>
@@ -724,10 +854,16 @@ export default function GermanEgyptSite() {
                   <MessageCircle size={20} color="#7FE3FF" />
                 </div>
                 <div>
-                  <div className="text-white font-bold" style={{ fontFamily: "Cairo, sans-serif" }}>
+                  <div
+                    className="text-white font-bold"
+                    style={{ fontFamily: "Cairo, sans-serif" }}
+                  >
                     واتساب
                   </div>
-                  <div dir="ltr" className="text-[#AFC6D0] text-sm mt-1 text-right">
+                  <div
+                    dir="ltr"
+                    className="text-[#AFC6D0] text-sm mt-1 text-right"
+                  >
                     {PHONE_DISPLAY}
                   </div>
                 </div>
@@ -737,10 +873,15 @@ export default function GermanEgyptSite() {
                   <Clock size={20} color="#7FE3FF" />
                 </div>
                 <div>
-                  <div className="text-white font-bold" style={{ fontFamily: "Cairo, sans-serif" }}>
+                  <div
+                    className="text-white font-bold"
+                    style={{ fontFamily: "Cairo, sans-serif" }}
+                  >
                     مواعيد العمل
                   </div>
-                  <div className="text-[#AFC6D0] text-sm mt-1">السبت – الخميس، 9 صباحًا – 8 مساءً</div>
+                  <div className="text-[#AFC6D0] text-sm mt-1">
+                    السبت – الخميس، 9 صباحًا – 8 مساءً
+                  </div>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -748,10 +889,15 @@ export default function GermanEgyptSite() {
                   <MapPin size={20} color="#7FE3FF" />
                 </div>
                 <div>
-                  <div className="text-white font-bold" style={{ fontFamily: "Cairo, sans-serif" }}>
+                  <div
+                    className="text-white font-bold"
+                    style={{ fontFamily: "Cairo, sans-serif" }}
+                  >
                     نغطي جمهورية مصر العربية
                   </div>
-                  <div className="text-[#AFC6D0] text-sm mt-1">معاينة وتركيب داخل وخارج القاهرة الكبرى</div>
+                  <div className="text-[#AFC6D0] text-sm mt-1">
+                    معاينة وتركيب داخل وخارج القاهرة الكبرى
+                  </div>
                 </div>
               </div>
             </div>
@@ -762,9 +908,14 @@ export default function GermanEgyptSite() {
       {/* ================= FOOTER ================= */}
       <footer className="py-10 bg-[#071F2B]">
         <div className="max-w-7xl mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <img src={LOGO_SRC} alt="جيرمان إيجيبت" className="h-10 w-auto opacity-90" />
+          <img
+            src={LOGO_SRC}
+            alt="جيرمان إيجيبت"
+            className="h-10 w-auto opacity-90"
+          />
           <p className="text-[#6E8894] text-sm text-center">
-            © {new Date().getFullYear()} جيرمان إيجيبت لتصنيع وتركيب الشتر و UPVC. جميع الحقوق محفوظة.
+            © {new Date().getFullYear()} جيرمان إيجيبت لتصنيع وتركيب الشتر و
+            UPVC. جميع الحقوق محفوظة.
           </p>
           <div className="flex gap-3">
             <a
